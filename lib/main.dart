@@ -1,4 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_app_1/widgets/header_image.dart';
+import 'package:flutter_app_1/widgets/login_btn.dart';
+import 'package:flutter_app_1/widgets/my_text_field.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,16 +43,16 @@ class Page extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 20),
-              SizedBox(
-                height: 100,
-                width: 100,
-                child: Image.network(
-                    "https://upload.wikimedia.org/wikipedia/en/thumb/8/8c/American_International_University-Bangladesh_Monogram.svg/1200px-American_International_University-Bangladesh_Monogram.svg.png"),
-              ),
+              const HeaderImage(),
               const SizedBox(height: 10),
               const Center(
-                child: Text("AMERICAN INTERNATIONAL UNIVERSITY-BANGLADESH",
-                    textAlign: TextAlign.center),
+                child: Text(
+                  "AMERICAN INTERNATIONAL UNIVERSITY-BANGLADESH",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               const SizedBox(height: 10),
               const Center(
@@ -60,53 +65,22 @@ class Page extends StatelessWidget {
                 child: Text("Sign in with your organizational id number."),
               ),
               const SizedBox(height: 30),
-              const SizedBox(
-                height: 35,
-                width: 250,
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'User Name',
-                  ),
-                ),
-              ),
+              MyTextField(mylabeltext: "User Name"),
               const SizedBox(
                 height: 10,
               ),
-              const SizedBox(
-                height: 35,
-                width: 250,
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(), labelText: "Password"),
-                ),
+              MyTextField(
+                mylabeltext: "Password",
               ),
               const SizedBox(height: 10),
-              SizedBox(
-                height: 35,
-                width: 250,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.blue),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(3.0),
-                      ),
-                    ),
-                  ),
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
+              const LoginBtn(),
               const SizedBox(height: 35),
-              const Center(
-                child: Text("Can't access your account?",
-                    style: TextStyle(color: Colors.blue)),
+              Center(
+                child: GestureDetector(
+                  onTap: () => log("ButtonIsPressed"), //console.log
+                  child: const Text("Can't access your account?",
+                      style: TextStyle(color: Colors.blue)),
+                ),
               )
             ],
           ),
